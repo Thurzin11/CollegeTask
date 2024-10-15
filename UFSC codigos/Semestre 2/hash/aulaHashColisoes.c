@@ -123,11 +123,21 @@ void insere(Hash *h, Aluno *a){
 void excluir(Hash *h, char* nome){
     /* Implementar a insercao. Se a posicao estiver ocupada, exibir uma mensagem e não inserir. Do contrário, fazer a inserção e exibir uma mensagem informando a posicao em que o elemento foi inserido.
       */
+     int calculoHash = gera_hash(nome,h->TABLE_SIZE);
+     Aluno *alunoFound = h->itens[calculoHash];
+     if (alunoFound!=NULL){
+         h->itens[calculoHash] = NULL;
+         printf("Aluno excluido na posição %d",calculoHash);
+     }else{
+         printf("Não existe um aluno com esse nome");
+     }
 }
 
 
 Aluno *busca(Hash *h, char *nome){
-   
+   int calculoHash = gera_hash(nome,h->TABLE_SIZE);
+   Aluno *alunoFound = h->itens[calculoHash];
+   return alunoFound;
 }
 
 
